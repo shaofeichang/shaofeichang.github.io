@@ -20,7 +20,7 @@ webtitle: 'MY Blog'
 bio: 'no bio'
 about: true
 aboutyou: 'I want fly'
-portraits: '/assets/Head.jpg' # your portraits image file path
+portraits: '/assets/head.jpg' # your portraits image file path
 
 # SNS
 SNS: true
