@@ -1,0 +1,69 @@
+---
+layout: post
+title:  "Atomic Demo!"
+date:   2018-10-15 +0800
+tags: jekyll update
+color: rgb(255,90,90)
+cover: '../assets/test.png'
+subtitle: 'Atomic Demo!'
+---
+
+package com.journaldev.concurrency;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class JavaAtomic {
+
+    public static void main(String[] args) throws InterruptedException {
+
+        ProcessingThread pt = new ProcessingThread();
+        Thread t1 = new Thread(pt, "t1");
+        t1.start();
+        Thread t2 = new Thread(pt, "t2");
+        t2.start();
+        t1.join();
+        t2.join();
+        System.out.println("Processing count=" + pt.getCount());
+    }
+}
+
+class ProcessingThread implements Runnable {
+    private AtomicInteger count = new AtomicInteger();
+
+    @Override
+    public void run() {
+        for (int i = 1; i < 5; i++) {
+            processSomething(i);
+            count.incrementAndGet();
+        }
+    }
+
+    public int getCount() {
+        return this.count.get();
+    }
+
+    private void processSomething(int i) {
+        // processing some job
+        try {
+            Thread.sleep(i * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+
+
+{% highlight ruby %}
+def print_hi(name)
+  puts "Hi, #{name}"
+end
+print_hi('Tom')
+#=> prints 'Hi, Tom' to STDOUT.
+{% endhighlight %}
+
+Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
