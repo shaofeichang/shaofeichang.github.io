@@ -8,6 +8,7 @@ cover: '../assets/test.png'
 subtitle: 'Atomic Demo!'
 ---
 
+{
 package com.journaldev.concurrency;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -51,4 +52,5 @@ class ProcessingThread implements Runnable {
         }
     }
 
+}
 }
